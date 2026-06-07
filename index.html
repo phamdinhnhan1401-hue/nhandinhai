@@ -256,6 +256,8 @@
     position: relative;
   }
   .upload-area:hover { border-color: var(--green-400); background: var(--green-50); }
+  .upload-area.locked { opacity: 0.7; pointer-events: none; }
+  .upload-area.locked .upload-locked-note { margin-top: 0.5rem; font-size: 12px; color: var(--gray-400); }
   .upload-area input[type="file"] {
     position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
   }
@@ -277,6 +279,10 @@
     background: none; border: none; cursor: pointer;
     color: var(--green-600); font-size: 14px; line-height: 1;
     padding: 0; margin: 0;
+  }
+  .file-chip button:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
   }
 
   /* GRID TWO COL */
@@ -602,7 +608,12 @@
           <p>Kéo thả hoặc nhấp để tải tệp lên</p>
           <span>Hình ảnh, PDF, Word</span>
         </div>
-        <div class="uploaded-files" id="files-bt3"></div>
+        <div class="uploaded-files" id="files-bt3">
+          <div class="file-chip">
+            <a href="23100133.docx" download style="color:inherit; text-decoration:none;">📎 23100133.docx</a>
+            <button disabled title="Xóa">×</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -686,7 +697,12 @@
           <p>Kéo thả hoặc nhấp để tải sản phẩm lên</p>
           <span>Hình ảnh, Video, Audio, PDF</span>
         </div>
-        <div class="uploaded-files" id="files-bt5"></div>
+        <div class="uploaded-files" id="files-bt5">
+          <div class="file-chip">
+            <a href="23100133-5.docx" download style="color:inherit; text-decoration:none;">📎 23100133-5.docx</a>
+            <button disabled title="Xóa">×</button>
+          </div>
+        </div>
       </div>
       <div class="field">
         <label>Đường link sản phẩm (YouTube, Drive, Behance...)</label>
@@ -733,7 +749,12 @@
           <p>Kéo thả hoặc nhấp để tải tệp lên</p>
           <span>Hình ảnh, PDF, Word</span>
         </div>
-        <div class="uploaded-files" id="files-bt6"></div>
+        <div class="uploaded-files" id="files-bt6">
+          <div class="file-chip">
+            <a href="23100133-6.docx" download style="color:inherit; text-decoration:none;">📎 23100133-6.docx</a>
+            <button disabled title="Xóa">×</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -832,7 +853,7 @@
       const size = file.size < 1024*1024
         ? (file.size/1024).toFixed(0) + ' KB'
         : (file.size/1024/1024).toFixed(1) + ' MB';
-      chip.innerHTML = `<span>${icon} ${file.name}</span><span style="color:var(--gray-400);font-size:11px;">${size}</span><button onclick="this.parentElement.remove()" title="Xóa">×</button>`;
+      chip.innerHTML = `<span>${icon} ${file.name}</span><span style="color:var(--gray-400);font-size:11px;">${size}</span><button disabled title="Xóa">×</button>`;
       container.appendChild(chip);
     });
     event.target.value = '';
@@ -860,6 +881,21 @@
     if (majorEl) displayMajor.textContent = '📚 ' + (majorEl.value.trim() || majorEl.placeholder || displayMajor.textContent.replace(/^📚\s*/, ''));
     if (schoolEl) displaySchool.textContent = '🏫 ' + (schoolEl.value.trim() || schoolEl.placeholder || displaySchool.textContent.replace(/^🏫\s*/, ''));
     if (yearEl) displayYear.textContent = '📅 ' + (yearEl.value.trim() || yearEl.placeholder || displayYear.textContent.replace(/^📅\s*/, ''));
+
+    // Disable all file uploads across the page and mark upload areas as locked
+    document.querySelectorAll('input[type="file"]').forEach(fi => {
+      fi.disabled = true;
+      fi.title = 'Tải lên đã bị khóa';
+    });
+    document.querySelectorAll('.upload-area').forEach(el => {
+      el.classList.add('locked');
+      if (!el.querySelector('.upload-locked-note')) {
+        const note = document.createElement('div');
+        note.className = 'upload-locked-note';
+        note.textContent = 'Tải lên đã bị vô hiệu hóa.';
+        el.appendChild(note);
+      }
+    });
   });
 </script>
 </body>
