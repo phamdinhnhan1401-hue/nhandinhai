@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Portfolio Kỹ Thuật Số</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green-50: #EAF3DE;
+    --green-100: #C0DD97;
+    --green-400: #639922;
+    --green-600: #3B6D11;
+    --green-800: #27500A;
+    --green-900: #173404;
+    --teal-50: #E1F5EE;
+    --teal-100: #9FE1CB;
+    --teal-400: #1D9E75;
+    --teal-600: #0F6E56;
+    --teal-800: #085041;
+    --gray-50: #F1EFE8;
+    --gray-100: #D3D1C7;
+    --gray-200: #B4B2A9;
+    --gray-400: #888780;
+    --gray-600: #5F5E5A;
+    --gray-800: #444441;
+    --amber-50: #FAEEDA;
+    --amber-100: #FAC775;
+    --amber-400: #BA7517;
+    --amber-600: #854F0B;
+    --amber-800: #633806;
+  }
+
+  body {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
+    color: #1a1a18;
+    background: #f8f6f0;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(248,246,240,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--gray-100);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2.5rem;
+    height: 60px;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--green-800);
+    letter-spacing: -0.3px;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-600);
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--green-600); }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #fff 60%, var(--green-50) 100%);
+    border-bottom: 1px solid var(--gray-100);
+    padding: 5rem 2.5rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .hero-text .label {
+    display: inline-block;
+    background: var(--green-50);
+    color: var(--green-800);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--green-900);
+    margin-bottom: 0.75rem;
+  }
+  .hero .subtitle {
+    font-size: 15px;
+    color: var(--gray-600);
+    margin-bottom: 1.5rem;
+    max-width: 420px;
+  }
+  .meta-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    background: #fff;
+    border: 1px solid var(--gray-100);
+    color: var(--gray-600);
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+  .avatar-box {
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    background: var(--green-50);
+    border: 3px solid var(--green-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--green-600);
+    flex-shrink: 0;
+  }
+
+  /* MAIN LAYOUT */
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 3rem 2.5rem;
+  }
+
+  /* SECTION HEADER */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--green-100);
+  }
+  .section-number {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--green-600);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--green-900);
+  }
+
+  /* CARDS */
+  .card {
+    background: #fff;
+    border: 1px solid var(--gray-100);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .card-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--green-800);
+    letter-spacing: 0.2px;
+  }
+  .badge {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .badge-green { background: var(--green-50); color: var(--green-800); }
+  .badge-amber { background: var(--amber-50); color: var(--amber-800); }
+  .badge-teal { background: var(--teal-50); color: var(--teal-800); }
+
+  /* FORM ELEMENTS */
+  .field { margin-bottom: 1.1rem; }
+  .field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gray-600);
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .field input[type="text"],
+  .field input[type="url"],
+  .field input[type="email"],
+  .field textarea,
+  .field select {
+    width: 100%;
+    padding: 0.6rem 0.85rem;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 14px;
+    color: #1a1a18;
+    background: #fafaf8;
+    border: 1px solid var(--gray-100);
+    border-radius: 8px;
+    outline: none;
+    transition: border-color .2s, box-shadow .2s;
+    resize: vertical;
+  }
+  .field input:focus,
+  .field textarea:focus,
+  .field select:focus {
+    border-color: var(--green-400);
+    box-shadow: 0 0 0 3px rgba(99,153,34,0.12);
+    background: #fff;
+  }
+  .field textarea { min-height: 90px; }
+  .field .hint {
+    margin-top: 0.3rem;
+    font-size: 11.5px;
+    color: var(--gray-400);
+    font-style: italic;
+  }
+
+  /* FILE UPLOAD */
+  .upload-area {
+    border: 1.5px dashed var(--gray-200);
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    background: #fafaf8;
+    transition: border-color .2s, background .2s;
+    cursor: pointer;
+    position: relative;
+  }
+  .upload-area:hover { border-color: var(--green-400); background: var(--green-50); }
+  .upload-area input[type="file"] {
+    position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
+  }
+  .upload-icon { font-size: 28px; margin-bottom: 0.5rem; }
+  .upload-area p { font-size: 13px; color: var(--gray-600); }
+  .upload-area span { font-size: 11px; color: var(--gray-400); display: block; margin-top: 4px; }
+  .uploaded-files { margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 8px; }
+  .file-chip {
+    background: var(--green-50);
+    color: var(--green-800);
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .file-chip button {
+    background: none; border: none; cursor: pointer;
+    color: var(--green-600); font-size: 14px; line-height: 1;
+    padding: 0; margin: 0;
+  }
+
+  /* GRID TWO COL */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+
+  /* SECTION DIVIDER */
+  .section-gap { margin-top: 3.5rem; }
+
+  /* SUMMARY / REFLECTION SECTION */
+  .reflection-card {
+    background: linear-gradient(135deg, var(--teal-50) 0%, #fff 80%);
+    border: 1px solid var(--teal-100);
+    border-radius: 12px;
+    padding: 1.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--green-900);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 2rem;
+    font-size: 13px;
+    margin-top: 4rem;
+  }
+  footer strong { color: #fff; }
+
+  /* SUBMIT BUTTON */
+  .btn-submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green-600);
+    color: #fff;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.75rem;
+    cursor: pointer;
+    transition: background .2s, transform .1s;
+  }
+  .btn-submit:hover { background: var(--green-800); }
+  .btn-submit:active { transform: scale(0.98); }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    color: var(--green-800);
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid var(--green-100);
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    transition: background .2s;
+    margin-right: 0.75rem;
+  }
+  .btn-secondary:hover { background: var(--green-50); }
+
+  .btn-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+    flex-wrap: wrap;
+  }
+
+  /* PROJECT ENTRY */
+  .project-entry {
+    border-left: 3px solid var(--green-100);
+    padding-left: 1.25rem;
+    margin-bottom: 2rem;
+  }
+  .project-entry-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .project-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--green-600);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    min-width: 80px;
+  }
+  .project-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-800);
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid var(--gray-100);
+    margin: 1.5rem 0;
+  }
+
+  @media (max-width: 680px) {
+    .hero { grid-template-columns: 1fr; }
+    .avatar-box { display: none; }
+    .two-col { grid-template-columns: 1fr; }
+    nav { padding: 0 1.25rem; }
+    .nav-links { gap: 1rem; }
+    .container { padding: 2rem 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#top">Portfolio</a>
+  <ul class="nav-links">
+    <li><a href="#gioi-thieu">Giới thiệu</a></li>
+    <li><a href="#du-an">Dự án</a></li>
+    <li><a href="#tong-ket">Tổng kết</a></li>
+  </ul>
+</nav>
+
+<!-- ===================== HERO / GIỚI THIỆU ===================== -->
+<section id="top">
+<div class="hero">
+  <div class="hero-text">
+    <span class="label">Portfolio Kỹ Thuật Số</span>
+    <h1 id="display-name">Họ và Tên</h1>
+    <p class="subtitle" id="display-intro">Giới thiệu ngắn về bản thân sẽ hiển thị ở đây sau khi bạn điền vào bên dưới.</p>
+    <div class="meta-tags">
+      <span class="tag" id="display-major">📚 Ngành học</span>
+      <span class="tag" id="display-school">🏫 Trường</span>
+      <span class="tag" id="display-year">📅 Năm học</span>
+    </div>
+  </div>
+  <div class="avatar-box" id="display-initials">?</div>
+</div>
+</section>
+
+<div class="container">
+
+<!-- ===================== TRANG GIỚI THIỆU ===================== -->
+<section id="gioi-thieu">
+  <div class="section-header">
+    <div class="section-number">1</div>
+    <h2 class="section-title">Trang Giới Thiệu</h2>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">Thông tin cá nhân</span>
+      <span class="badge badge-green">Bắt buộc</span>
+    </div>
+    <div class="two-col">
+      <div class="field">
+        <label>Họ và tên đầy đủ</label>
+        <input type="text" id="inp-name" placeholder="Nguyễn Văn A" oninput="updateHero()" />
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <input type="email" id="inp-email" placeholder="example@email.com" />
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="field">
+        <label>Ngành học / Chuyên ngành</label>
+        <input type="text" id="inp-major" placeholder="Ví dụ: Công nghệ thông tin" oninput="updateHero()" />
+      </div>
+      <div class="field">
+        <label>Tên trường</label>
+        <input type="text" id="inp-school" placeholder="Ví dụ: Đại học Hà Nội" oninput="updateHero()" />
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="field">
+        <label>Mã số sinh viên</label>
+        <input type="text" id="inp-id" placeholder="Ví dụ: 21020001" />
+      </div>
+      <div class="field">
+        <label>Năm học / Khóa</label>
+        <input type="text" id="inp-year" placeholder="Ví dụ: K66 – Năm 2" oninput="updateHero()" />
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">Giới thiệu bản thân & Mục tiêu Portfolio</span>
+      <span class="badge badge-green">Bắt buộc</span>
+    </div>
+    <div class="field">
+      <label>Giới thiệu ngắn về bản thân</label>
+      <textarea id="inp-intro" rows="4" placeholder="Chia sẻ về bản thân bạn: sở thích, điểm mạnh, hướng phát triển..." oninput="updateIntro()"></textarea>
+      <p class="hint">Nên viết 3–5 câu, thể hiện cá tính và định hướng của bạn.</p>
+    </div>
+    <div class="field">
+      <label>Mục tiêu học tập (ngành học, định hướng nghề nghiệp)</label>
+      <textarea rows="3" placeholder="Mục tiêu của bạn trong khoá học và sau khi tốt nghiệp..."></textarea>
+    </div>
+    <div class="field">
+      <label>Mục tiêu của Portfolio này</label>
+      <textarea rows="3" placeholder='Ví dụ: "Thể hiện các kỹ năng số đã học", "Lưu trữ sản phẩm cá nhân để dễ dàng truy cập và chia sẻ"...'></textarea>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">Ảnh đại diện (tùy chọn)</span>
+      <span class="badge badge-teal">Tùy chọn</span>
+    </div>
+    <div class="upload-area" id="avatar-upload">
+      <input type="file" accept="image/*" onchange="handleAvatarUpload(event)" />
+      <div class="upload-icon">🖼️</div>
+      <p>Kéo thả hoặc nhấp để chọn ảnh</p>
+      <span>JPG, PNG, WEBP – tối đa 5MB</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TRANG DỰ ÁN ===================== -->
+<section id="du-an" class="section-gap">
+  <div class="section-header">
+    <div class="section-number">2</div>
+    <h2 class="section-title">Trang Dự Án</h2>
+  </div>
+
+  <!-- BÀI 1 -->
+  <div class="project-entry">
+    <div class="project-entry-header">
+      <span class="project-num">Bài tập 1</span>
+      <span class="project-name">Bài 1 – Máy tính và các thiết bị ngoại vi</span>
+      <span class="badge badge-green" style="margin-left:auto;">Mục 1.4</span>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Quản lý tệp và thư mục</span>
+      </div>
+      <div class="field">
+        <label>Tóm tắt quá trình thực hiện</label>
+        <textarea rows="4" placeholder="Mô tả những gì bạn đã làm: thiết lập cấu trúc thư mục, quy tắc đặt tên tệp..."></textarea>
+      </div>
+      <div class="field">
+        <label>Kết quả đạt được / Kiến thức rút ra</label>
+        <textarea rows="3" placeholder="Bạn đã học được gì từ bài tập này?"></textarea>
+      </div>
+      <div class="field">
+        <label>Ảnh chụp minh họa / Tệp đính kèm</label>
+        <div class="upload-area">
+          <input type="file" multiple accept="image/*,.pdf,.docx,.xlsx" onchange="handleFileUpload(event, 'files-bt1')" />
+          <div class="upload-icon">📁</div>
+          <p>Kéo thả hoặc nhấp để tải tệp lên</p>
+          <span>Hình ảnh, PDF, Word, Excel – tối đa 20MB/tệp</span>
+        </div>
+        <div class="uploaded-files" id="files-bt1"></div>
+      </div>
+      <div class="field">
+        <label>Đường link tham khảo (nếu có)</label>
+        <input type="url" placeholder="https://..." />
+      </div>
+    </div>
+  </div>
+
+  <!-- BÀI 2 -->
+  <div class="project-entry">
+    <div class="project-entry-header">
+      <span class="project-num">Bài tập 2</span>
+      <span class="project-name">Bài 2 – Khai thác dữ liệu và thông tin</span>
+      <span class="badge badge-green" style="margin-left:auto;">Mục 2.4</span>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Tìm kiếm & đánh giá thông tin học thuật</span>
+      </div>
+      <div class="field">
+        <label>Chủ đề tìm kiếm</label>
+        <input type="text" placeholder="Chủ đề bạn đã nghiên cứu..." />
+      </div>
+      <div class="field">
+        <label>Các toán tử tìm kiếm đã sử dụng</label>
+        <textarea rows="3" placeholder="Liệt kê các toán tử nâng cao đã dùng (site:, filetype:, dấu ngoặc kép...) và giải thích cách dùng..."></textarea>
+      </div>
+      <div class="field">
+        <label>Kết quả & Đánh giá nguồn tin</label>
+        <textarea rows="4" placeholder="Trình bày kết quả tìm kiếm, đánh giá độ tin cậy của các nguồn..."></textarea>
+      </div>
+      <div class="field">
+        <label>Ảnh chụp kết quả tìm kiếm / Bảng đánh giá nguồn</label>
+        <div class="upload-area">
+          <input type="file" multiple accept="image/*,.pdf,.docx,.xlsx" onchange="handleFileUpload(event, 'files-bt2')" />
+          <div class="upload-icon">📁</div>
+          <p>Kéo thả hoặc nhấp để tải tệp lên</p>
+          <span>Hình ảnh, PDF, Word, Excel</span>
+        </div>
+        <div class="uploaded-files" id="files-bt2"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BÀI 3 -->
+  <div class="project-entry">
+    <div class="project-entry-header">
+      <span class="project-num">Bài tập 3</span>
+      <span class="project-name">Bài 3 – Tổng quan về trí tuệ nhân tạo</span>
+      <span class="badge badge-amber" style="margin-left:auto;">Mục 3.4</span>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Viết Prompt hiệu quả cho các tác vụ học tập</span>
+      </div>
+      <div class="field">
+        <label>Prompt ban đầu</label>
+        <textarea rows="3" placeholder="Dán Prompt gốc (phiên bản đầu tiên) vào đây..."></textarea>
+      </div>
+      <div class="field">
+        <label>Kết quả từ AI (Prompt ban đầu)</label>
+        <textarea rows="3" placeholder="Sao chép kết quả AI trả về từ Prompt ban đầu..."></textarea>
+      </div>
+      <div class="field">
+        <label>Prompt cải tiến</label>
+        <textarea rows="3" placeholder="Phiên bản Prompt sau khi cải tiến..."></textarea>
+      </div>
+      <div class="field">
+        <label>Kết quả từ AI (Prompt cải tiến) & So sánh</label>
+        <textarea rows="4" placeholder="Kết quả từ Prompt cải tiến và phân tích sự khác biệt..."></textarea>
+      </div>
+      <div class="field">
+        <label>Ảnh chụp minh họa / Tệp đính kèm</label>
+        <div class="upload-area">
+          <input type="file" multiple accept="image/*,.pdf,.docx" onchange="handleFileUpload(event, 'files-bt3')" />
+          <div class="upload-icon">📁</div>
+          <p>Kéo thả hoặc nhấp để tải tệp lên</p>
+          <span>Hình ảnh, PDF, Word</span>
+        </div>
+        <div class="uploaded-files" id="files-bt3"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BÀI 4 -->
+  <div class="project-entry">
+    <div class="project-entry-header">
+      <span class="project-num">Bài tập 4</span>
+      <span class="project-name">Bài 4 – Giao tiếp và hợp tác trong môi trường số</span>
+      <span class="badge badge-teal" style="margin-left:auto;">Mục 4.4</span>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Sử dụng công cụ hợp tác trực tuyến cho dự án nhóm</span>
+      </div>
+      <div class="field">
+        <label>Công cụ quản lý dự án đã sử dụng</label>
+        <input type="text" placeholder="Ví dụ: Trello, Notion, Asana, Microsoft Teams..." />
+      </div>
+      <div class="field">
+        <label>Mô tả cách sử dụng công cụ</label>
+        <textarea rows="4" placeholder="Mô tả cách nhóm sử dụng công cụ: phân công, theo dõi tiến độ, phối hợp..."></textarea>
+      </div>
+      <div class="field">
+        <label>Minh chứng sử dụng (ảnh chụp màn hình)</label>
+        <div class="upload-area">
+          <input type="file" multiple accept="image/*,.pdf" onchange="handleFileUpload(event, 'files-bt4')" />
+          <div class="upload-icon">📁</div>
+          <p>Kéo thả hoặc nhấp để tải tệp lên</p>
+          <span>Hình ảnh chụp màn hình, PDF</span>
+        </div>
+        <div class="uploaded-files" id="files-bt4"></div>
+      </div>
+      <div class="field">
+        <label>Đường link dự án nhóm (nếu có)</label>
+        <input type="url" placeholder="https://..." />
+      </div>
+    </div>
+  </div>
+
+  <!-- BÀI 5 -->
+  <div class="project-entry">
+    <div class="project-entry-header">
+      <span class="project-num">Bài tập 5</span>
+      <span class="project-name">Bài 5 – Sáng tạo nội dung số</span>
+      <span class="badge badge-green" style="margin-left:auto;">Mục 5.4</span>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Sử dụng AI tạo sinh để hỗ trợ sáng tạo nội dung</span>
+      </div>
+      <div class="field">
+        <label>Loại sản phẩm nội dung</label>
+        <select>
+          <option value="">-- Chọn loại sản phẩm --</option>
+          <option>Hình ảnh</option>
+          <option>Video</option>
+          <option>Bài viết / Blog</option>
+          <option>Infographic</option>
+          <option>Podcast / Audio</option>
+          <option>Khác</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Mô tả sản phẩm nội dung số</label>
+        <textarea rows="3" placeholder="Mô tả ngắn về sản phẩm bạn đã tạo ra..."></textarea>
+      </div>
+      <div class="field">
+        <label>Công cụ AI đã sử dụng</label>
+        <input type="text" placeholder="Ví dụ: Midjourney, ChatGPT, Canva AI, Runway..." />
+      </div>
+      <div class="field">
+        <label>Mô tả quy trình sản xuất</label>
+        <textarea rows="4" placeholder="Các bước thực hiện từ ý tưởng đến sản phẩm hoàn thiện..."></textarea>
+      </div>
+      <div class="field">
+        <label>Sản phẩm nội dung hoàn chỉnh</label>
+        <div class="upload-area">
+          <input type="file" multiple accept="image/*,video/*,.pdf,.mp3,.wav" onchange="handleFileUpload(event, 'files-bt5')" />
+          <div class="upload-icon">🎨</div>
+          <p>Kéo thả hoặc nhấp để tải sản phẩm lên</p>
+          <span>Hình ảnh, Video, Audio, PDF</span>
+        </div>
+        <div class="uploaded-files" id="files-bt5"></div>
+      </div>
+      <div class="field">
+        <label>Đường link sản phẩm (YouTube, Drive, Behance...)</label>
+        <input type="url" placeholder="https://..." />
+      </div>
+    </div>
+  </div>
+
+  <!-- BÀI 6 -->
+  <div class="project-entry">
+    <div class="project-entry-header">
+      <span class="project-num">Bài tập 6</span>
+      <span class="project-name">Bài 6 – An toàn và liêm chính học thuật trong môi trường số</span>
+      <span class="badge badge-amber" style="margin-left:auto;">Mục 6.4</span>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Sử dụng AI có trách nhiệm trong học tập và nghiên cứu</span>
+      </div>
+      <div class="field">
+        <label>Bộ nguyên tắc cá nhân về sử dụng AI (5–7 điều)</label>
+        <textarea rows="8" placeholder="1. 
+2. 
+3. 
+4. 
+5. 
+6. 
+7. "></textarea>
+        <p class="hint">Mỗi nguyên tắc nên có giải thích lý do và liên hệ với các chính sách thực tế.</p>
+      </div>
+      <div class="field">
+        <label>Phân tích các vấn đề đạo đức AI</label>
+        <textarea rows="5" placeholder="Phân tích sâu về các vấn đề đạo đức trong sử dụng AI: quyền riêng tư, bản quyền, trách nhiệm học thuật..."></textarea>
+      </div>
+      <div class="field">
+        <label>Liên kết với chính sách / nguồn tham khảo</label>
+        <textarea rows="3" placeholder="Các chính sách, quy định, hoặc tài liệu tham khảo bạn đã dựa vào..."></textarea>
+      </div>
+      <div class="field">
+        <label>Tệp đính kèm (nếu có)</label>
+        <div class="upload-area">
+          <input type="file" multiple accept="image/*,.pdf,.docx" onchange="handleFileUpload(event, 'files-bt6')" />
+          <div class="upload-icon">📁</div>
+          <p>Kéo thả hoặc nhấp để tải tệp lên</p>
+          <span>Hình ảnh, PDF, Word</span>
+        </div>
+        <div class="uploaded-files" id="files-bt6"></div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ===================== TỔNG KẾT ===================== -->
+<section id="tong-ket" class="section-gap">
+  <div class="section-header">
+    <div class="section-number">3</div>
+    <h2 class="section-title">Trang Tổng Kết</h2>
+  </div>
+
+  <div class="reflection-card">
+    <div class="card-header">
+      <span class="card-title">Trải nghiệm & cảm nhận cá nhân</span>
+      <span class="badge badge-teal">Phản ánh</span>
+    </div>
+    <div class="field">
+      <label>Chia sẻ trải nghiệm thực hiện dự án Portfolio</label>
+      <textarea rows="5" placeholder="Quá trình thực hiện dự án này như thế nào? Cảm nhận chung của bạn?"></textarea>
+    </div>
+    <div class="field">
+      <label>Những kiến thức & kỹ năng quan trọng nhất bạn đã học được</label>
+      <textarea rows="4" placeholder="Liệt kê và mô tả những kiến thức, kỹ năng bạn coi là có giá trị nhất từ môn học này..."></textarea>
+    </div>
+    <div class="field">
+      <label>Những điểm bạn cảm thấy tâm đắc nhất</label>
+      <textarea rows="4" placeholder="Những phần bài tập, kỹ năng, hoặc trải nghiệm nào khiến bạn tự hào nhất?"></textarea>
+    </div>
+    <div class="field">
+      <label>Những thách thức gặp phải khi xây dựng Portfolio</label>
+      <textarea rows="4" placeholder="Những khó khăn bạn đã vượt qua trong quá trình thực hiện? Bạn đã giải quyết chúng như thế nào?"></textarea>
+    </div>
+    <div class="field">
+      <label>Định hướng phát triển trong tương lai</label>
+      <textarea rows="4" placeholder="Bạn dự định ứng dụng những kỹ năng đã học vào thực tế như thế nào? Những bước tiếp theo?"></textarea>
+    </div>
+  </div>
+</section>
+
+</div><!-- /container -->
+
+<footer>
+  <strong>Portfolio Kỹ Thuật Số</strong> · Môn Nhập môn Công nghệ số &amp; Ứng dụng Trí tuệ nhân tạo<br/>
+  <span style="font-size:12px; opacity:.7;">Trang này chạy hoàn toàn trên trình duyệt – dữ liệu không được gửi đến máy chủ nào.</span>
+</footer>
+
+<script>
+  function updateHero() {
+    const name = document.getElementById('inp-name').value.trim();
+    const major = document.getElementById('inp-major').value.trim();
+    const school = document.getElementById('inp-school').value.trim();
+    const year = document.getElementById('inp-year').value.trim();
+
+    document.getElementById('display-name').textContent = name || 'Họ và Tên';
+    document.getElementById('display-major').textContent = '📚 ' + (major || 'Ngành học');
+    document.getElementById('display-school').textContent = '🏫 ' + (school || 'Trường');
+    document.getElementById('display-year').textContent = '📅 ' + (year || 'Năm học');
+
+    if (name) {
+      const parts = name.split(' ');
+      const initials = parts.length >= 2
+        ? (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
+        : name[0].toUpperCase();
+      document.getElementById('display-initials').textContent = initials;
+    } else {
+      document.getElementById('display-initials').textContent = '?';
+    }
+  }
+
+  function updateIntro() {
+    const intro = document.getElementById('inp-intro').value.trim();
+    document.getElementById('display-intro').textContent =
+      intro || 'Giới thiệu ngắn về bản thân sẽ hiển thị ở đây sau khi bạn điền vào bên dưới.';
+  }
+
+  function handleAvatarUpload(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const box = document.getElementById('display-initials');
+      box.style.backgroundImage = 'url(' + e.target.result + ')';
+      box.style.backgroundSize = 'cover';
+      box.style.backgroundPosition = 'center';
+      box.textContent = '';
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function handleFileUpload(event, containerId) {
+    const files = event.target.files;
+    const container = document.getElementById(containerId);
+    Array.from(files).forEach(file => {
+      const chip = document.createElement('div');
+      chip.className = 'file-chip';
+      const icon = file.type.startsWith('image/') ? '🖼️' :
+                   file.type === 'application/pdf' ? '📄' :
+                   file.name.endsWith('.docx') ? '📝' : '📎';
+      const size = file.size < 1024*1024
+        ? (file.size/1024).toFixed(0) + ' KB'
+        : (file.size/1024/1024).toFixed(1) + ' MB';
+      chip.innerHTML = `<span>${icon} ${file.name}</span><span style="color:var(--gray-400);font-size:11px;">${size}</span><button onclick="this.parentElement.remove()" title="Xóa">×</button>`;
+      container.appendChild(chip);
+    });
+    event.target.value = '';
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('input[type="text"], input[type="email"], input[type="url"], textarea, select').forEach(el => {
+      el.disabled = true;
+    });
+  });
+</script>
+</body>
+</html>
