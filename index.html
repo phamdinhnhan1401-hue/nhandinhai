@@ -415,7 +415,7 @@
       <span class="tag" id="display-year">📅 Năm học</span>
     </div>
   </div>
-  <div class="avatar-box" id="display-initials">?</div>
+  <div class="avatar-box" id="display-initials" data-avatar-set="true" style="background-image: url('425601490_816077193866262_3583062600045915274_n.jpg'); background-size: cover; background-position: center;"></div>
 </div>
 </section>
 
@@ -805,14 +805,22 @@
     document.getElementById('display-school').textContent = '🏫 ' + (school || 'Trường');
     document.getElementById('display-year').textContent = '📅 ' + (year || 'Năm học');
 
-    if (name) {
-      const parts = name.split(' ');
-      const initials = parts.length >= 2
-        ? (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
-        : name[0].toUpperCase();
-      document.getElementById('display-initials').textContent = initials;
+    const box = document.getElementById('display-initials');
+    // If an avatar image has been set, don't overwrite it with initials
+    if (box.dataset && box.dataset.avatarSet === 'true') {
+      // keep existing avatar image
     } else {
-      document.getElementById('display-initials').textContent = '?';
+      if (name) {
+        const parts = name.split(' ');
+        const initials = parts.length >= 2
+          ? (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
+          : name[0].toUpperCase();
+        box.style.backgroundImage = '';
+        box.textContent = initials;
+      } else {
+        box.style.backgroundImage = '';
+        box.textContent = '?';
+      }
     }
   }
 
@@ -832,6 +840,7 @@
       box.style.backgroundSize = 'cover';
       box.style.backgroundPosition = 'center';
       box.textContent = '';
+      box.dataset.avatarSet = 'true';
     };
     reader.readAsDataURL(file);
   }
