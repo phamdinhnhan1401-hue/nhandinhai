@@ -522,12 +522,13 @@
       </div>
       <div class="field">
         <label>Ảnh chụp minh họa / Tệp đính kèm</label>
-        <div class="uploaded-files" id="files-bt1">
-          <div class="file-chip">
-            <a href="1.docx" download style="color:inherit; text-decoration:none;">📎 1.docx</a>
-            <button disabled title="Xóa">×</button>
-          </div>
+        <div class="upload-area">
+          <input type="file" multiple accept="image/*,.pdf,.docx,.xlsx" onchange="handleFileUpload(event, 'files-bt1')" />
+          <div class="upload-icon">📁</div>
+          <p>Kéo thả hoặc nhấp để tải tệp lên</p>
+          <span>Hình ảnh, PDF, Word, Excel – tối đa 20MB/tệp</span>
         </div>
+        <div class="uploaded-files" id="files-bt1"></div>
       </div>
       <div class="field">
         <label>Đường link tham khảo (nếu có)</label>
