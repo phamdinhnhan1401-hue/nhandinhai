@@ -522,13 +522,12 @@
       </div>
       <div class="field">
         <label>Ảnh chụp minh họa / Tệp đính kèm</label>
-        <div class="upload-area">
-          <input type="file" multiple accept="image/*,.pdf,.docx,.xlsx" onchange="handleFileUpload(event, 'files-bt1')" />
-          <div class="upload-icon">📁</div>
-          <p>Kéo thả hoặc nhấp để tải tệp lên</p>
-          <span>Hình ảnh, PDF, Word, Excel – tối đa 20MB/tệp</span>
+        <div class="uploaded-files" id="files-bt1">
+          <div class="file-chip">
+            <a href="1.docx" download style="color:inherit; text-decoration:none;">📎 1.docx</a>
+            <button disabled title="Xóa">×</button>
+          </div>
         </div>
-        <div class="uploaded-files" id="files-bt1"></div>
       </div>
       <div class="field">
         <label>Đường link tham khảo (nếu có)</label>
@@ -562,12 +561,6 @@
       </div>
       <div class="field">
         <label>Ảnh chụp kết quả tìm kiếm / Bảng đánh giá nguồn</label>
-        <div class="upload-area">
-          <input type="file" multiple accept="image/*,.pdf,.docx,.xlsx" onchange="handleFileUpload(event, 'files-bt2')" />
-          <div class="upload-icon">📁</div>
-          <p>Kéo thả hoặc nhấp để tải tệp lên</p>
-          <span>Hình ảnh, PDF, Word, Excel</span>
-        </div>
         <div class="uploaded-files" id="files-bt2"></div>
       </div>
     </div>
@@ -602,12 +595,6 @@
       </div>
       <div class="field">
         <label>Ảnh chụp minh họa / Tệp đính kèm</label>
-        <div class="upload-area">
-          <input type="file" multiple accept="image/*,.pdf,.docx" onchange="handleFileUpload(event, 'files-bt3')" />
-          <div class="upload-icon">📁</div>
-          <p>Kéo thả hoặc nhấp để tải tệp lên</p>
-          <span>Hình ảnh, PDF, Word</span>
-        </div>
         <div class="uploaded-files" id="files-bt3">
           <div class="file-chip">
             <a href="23100133.docx" download style="color:inherit; text-decoration:none;">📎 23100133.docx</a>
@@ -639,12 +626,6 @@
       </div>
       <div class="field">
         <label>Minh chứng sử dụng (ảnh chụp màn hình)</label>
-        <div class="upload-area">
-          <input type="file" multiple accept="image/*,.pdf" onchange="handleFileUpload(event, 'files-bt4')" />
-          <div class="upload-icon">📁</div>
-          <p>Kéo thả hoặc nhấp để tải tệp lên</p>
-          <span>Hình ảnh chụp màn hình, PDF</span>
-        </div>
         <div class="uploaded-files" id="files-bt4"></div>
       </div>
       <div class="field">
@@ -691,12 +672,6 @@
       </div>
       <div class="field">
         <label>Sản phẩm nội dung hoàn chỉnh</label>
-        <div class="upload-area">
-          <input type="file" multiple accept="image/*,video/*,.pdf,.mp3,.wav" onchange="handleFileUpload(event, 'files-bt5')" />
-          <div class="upload-icon">🎨</div>
-          <p>Kéo thả hoặc nhấp để tải sản phẩm lên</p>
-          <span>Hình ảnh, Video, Audio, PDF</span>
-        </div>
         <div class="uploaded-files" id="files-bt5"></div>
       </div>
       <div class="field">
@@ -738,12 +713,6 @@
       </div>
       <div class="field">
         <label>Tệp đính kèm (nếu có)</label>
-        <div class="upload-area">
-          <input type="file" multiple accept="image/*,.pdf,.docx" onchange="handleFileUpload(event, 'files-bt6')" />
-          <div class="upload-icon">📁</div>
-          <p>Kéo thả hoặc nhấp để tải tệp lên</p>
-          <span>Hình ảnh, PDF, Word</span>
-        </div>
         <div class="uploaded-files" id="files-bt6"></div>
       </div>
     </div>
