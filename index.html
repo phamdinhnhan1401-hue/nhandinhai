@@ -136,9 +136,9 @@
 
   /* MAIN LAYOUT */
   .container {
-    max-width: 1000px;
+    max-width: 980px;
     margin: 0 auto;
-    padding: 3rem 2.5rem;
+    padding: 3rem 2rem;
   }
 
   /* SECTION HEADER */
@@ -170,6 +170,8 @@
 
   /* CARDS */
   .card {
+    width: 100%;
+    max-width: 100%;
     background: #fff;
     border: 1px solid var(--gray-100);
     border-radius: 12px;
@@ -364,6 +366,7 @@
   }
   .project-entry-header {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 0.75rem;
     margin-bottom: 1rem;
@@ -375,11 +378,14 @@
     letter-spacing: 0.5px;
     text-transform: uppercase;
     min-width: 80px;
+    flex-shrink: 0;
   }
   .project-name {
     font-size: 13px;
     font-weight: 600;
     color: var(--gray-800);
+    flex: 1 1 auto;
+    min-width: 0;
   }
   .divider {
     border: none;
