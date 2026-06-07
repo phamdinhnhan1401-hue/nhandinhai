@@ -485,17 +485,6 @@
     </div>
   </div>
 
-  <div class="card">
-    <div class="card-header">
-      <span class="card-title">Ảnh đại diện (tùy chọn)</span>
-      <span class="badge badge-teal">Tùy chọn</span>
-    </div>
-    <div class="upload-area" id="avatar-upload">
-      <input type="file" accept="image/*" onchange="handleAvatarUpload(event)" />
-      <div class="upload-icon">🖼️</div>
-      <p>Kéo thả hoặc nhấp để chọn ảnh</p>
-      <span>JPG, PNG, WEBP – tối đa 5MB</span>
-    </div>
   </div>
 </section>
 
@@ -830,20 +819,6 @@
       intro || 'Giới thiệu ngắn về bản thân sẽ hiển thị ở đây sau khi bạn điền vào bên dưới.';
   }
 
-  function handleAvatarUpload(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      const box = document.getElementById('display-initials');
-      box.style.backgroundImage = 'url(' + e.target.result + ')';
-      box.style.backgroundSize = 'cover';
-      box.style.backgroundPosition = 'center';
-      box.textContent = '';
-      box.dataset.avatarSet = 'true';
-    };
-    reader.readAsDataURL(file);
-  }
 
   function handleFileUpload(event, containerId) {
     const files = event.target.files;
@@ -864,9 +839,27 @@
   }
 
   document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('input[type="text"], input[type="email"], input[type="url"], textarea, select').forEach(el => {
-      el.disabled = true;
-    });
+    const inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="url"], textarea, select');
+    inputs.forEach(el => { el.disabled = true; });
+
+    // Sync displayed hero fields with input values/placeholders so they match
+    const nameEl = document.getElementById('inp-name');
+    const introEl = document.getElementById('inp-intro');
+    const majorEl = document.getElementById('inp-major');
+    const schoolEl = document.getElementById('inp-school');
+    const yearEl = document.getElementById('inp-year');
+
+    const displayName = document.getElementById('display-name');
+    const displayIntro = document.getElementById('display-intro');
+    const displayMajor = document.getElementById('display-major');
+    const displaySchool = document.getElementById('display-school');
+    const displayYear = document.getElementById('display-year');
+
+    if (nameEl) displayName.textContent = nameEl.value.trim() || displayName.textContent;
+    if (introEl) displayIntro.textContent = introEl.value.trim() || introEl.placeholder || displayIntro.textContent;
+    if (majorEl) displayMajor.textContent = '📚 ' + (majorEl.value.trim() || majorEl.placeholder || displayMajor.textContent.replace(/^📚\s*/, ''));
+    if (schoolEl) displaySchool.textContent = '🏫 ' + (schoolEl.value.trim() || schoolEl.placeholder || displaySchool.textContent.replace(/^🏫\s*/, ''));
+    if (yearEl) displayYear.textContent = '📅 ' + (yearEl.value.trim() || yearEl.placeholder || displayYear.textContent.replace(/^📅\s*/, ''));
   });
 </script>
 </body>
